@@ -1,0 +1,21 @@
+sequenceDiagram
+  autonumber
+  participant ESP as ESP32-C3
+  participant Server as Node.js Server
+  participant ML as Flask ML Service
+  participant Web as Website Dashboard
+  participant App as Flutter App
+
+  ESP->>ESP: Lấy mẫu MPU6050 + MAX30102
+  ESP->>ESP: Gom window 100 mẫu và tính trạng thái FSM
+  ESP->>Server: CoAP POST /api/sensor-batch<br/>UDP 5683
+  Server-->>ESP: CoAP ACK
+  Server->>ML: HTTP POST /predict<br/>features + sensor window
+  ML-->>Server: Kết quả Gradient Boosting
+  Server->>Server: Lưu dữ liệu, cập nhật trạng thái thiết bị
+  Server-->>Web: Socket.IO realtime<br/>chart + device state + alert
+  alt Có sự kiện té ngã
+    Server-->>App: Gửi cảnh báo khẩn cấp
+    App->>Server: HTTP POST /api/fall-response
+    Server-->>Web: Cập nhật trạng thái phản hồi
+  end

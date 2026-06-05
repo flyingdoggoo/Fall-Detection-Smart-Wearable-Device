@@ -1,0 +1,43 @@
+flowchart TB
+  subgraph Power["Khối nguồn"]
+    LiPo["LiPo 3.7 V<br/>2000 mAh"]
+    TP["TP4056<br/>sạc pin"]
+    MT["MT3608<br/>boost 5 V"]
+    LiPo --> TP --> MT
+  end
+
+  subgraph Controller["Khối xử lý"]
+    ESP["ESP32-C3"]
+    GPIO4["GPIO4 / SDA"]
+    GPIO5["GPIO5 / SCL"]
+    GPIO18["GPIO18"]
+    GPIO9["GPIO9"]
+    VIN["VIN/5V"]
+    V33["3V3"]
+    GND["GND"]
+  end
+
+  subgraph Sensors["Khối cảm biến"]
+    MPU["MPU6050<br/>0x68"]
+    MAX["MAX30102<br/>0x57"]
+  end
+
+  subgraph LocalAlert["Khối cảnh báo và tương tác"]
+    Buzzer["Buzzer"]
+    Button["Nút nhấn phản hồi"]
+  end
+
+  MT -- "5 V" --> VIN
+  MT -- "GND" --> GND
+  V33 -- "VCC" --> MPU
+  V33 -- "VCC" --> MAX
+  GND -- "GND" --> MPU
+  GND -- "GND" --> MAX
+  GPIO4 -- "I2C SDA" --> MPU
+  GPIO4 -- "I2C SDA" --> MAX
+  GPIO5 -- "I2C SCL" --> MPU
+  GPIO5 -- "I2C SCL" --> MAX
+  GPIO18 -- "điều khiển âm báo" --> Buzzer
+  GPIO9 -- "đọc trạng thái nhấn" --> Button
+  GND --> Buzzer
+  Button --> GND

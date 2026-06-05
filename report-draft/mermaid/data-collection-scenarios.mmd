@@ -1,0 +1,31 @@
+flowchart TB
+  Start["Chuẩn bị thiết bị đeo<br/>đồng nhất vị trí và tần số lấy mẫu"]
+  Label{"Loại kịch bản"}
+
+  subgraph Normal["Nhãn 0 - Normal"]
+    N1["Đi bộ"]
+    N2["Đứng lên / ngồi xuống"]
+    N3["Nằm xuống có kiểm soát"]
+    N4["Sinh hoạt hằng ngày"]
+  end
+
+  subgraph Fall["Nhãn 1 - Fall"]
+    F1["Té về trước"]
+    F2["Té về sau"]
+    F3["Té sang trái"]
+    F4["Té sang phải"]
+  end
+
+  CSV["Ghi dữ liệu thô<br/>ax, ay, az, gx, gy, gz, BPM, timestamp"]
+  Meta["Gắn metadata<br/>người thực hiện, kịch bản, nhãn"]
+  Clean["Kiểm tra lỗi và lọc nhiễu"]
+  Window["Chia cửa sổ 100 mẫu"]
+  Feature["Trích xuất đặc trưng"]
+  Dataset["Tập dữ liệu huấn luyện<br/>0 = Normal, 1 = Fall"]
+
+  Start --> Label
+  Label --> Normal
+  Label --> Fall
+  Normal --> CSV
+  Fall --> CSV
+  CSV --> Meta --> Clean --> Window --> Feature --> Dataset

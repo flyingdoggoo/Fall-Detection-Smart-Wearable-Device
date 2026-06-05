@@ -5,12 +5,15 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "node server.js",
+    "start:deploy": "node server_deploy.js",
+    "dev:deploy": "node server_deploy.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.6.1",
     "express": "^4.18.2",
+    "firebase-admin": "^13.4.0",
     "socket.io": "^4.6.1"
   }
 }

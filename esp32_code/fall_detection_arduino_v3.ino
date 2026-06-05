@@ -12,13 +12,13 @@
 // const char* password   = "888888888";
 // const char* serverHost = "172.20.10.3";
 
-// const char* ssid       = "Giat Ui Tigon 1"; 
-// const char* password   = "789789789";
-// const char* serverHost = "192.168.1.7";
+const char* ssid       = "Giat Ui Tigon 1"; 
+const char* password   = "789789789";
+const char* serverHost = "192.168.1.7";
 
-const char* ssid       = "Veitel";
-const char* password   = "12345667";
-const char* serverHost = "10.120.115.2";
+// const char* ssid       = "Veitel";
+// const char* password   = "12345667";
+// const char* serverHost = "10.120.115.2";
 const uint16_t serverPort = 5683;
 
 
