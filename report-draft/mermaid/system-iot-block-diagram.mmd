@@ -1,0 +1,25 @@
+flowchart LR
+  subgraph Wearable["Thiết bị đeo ESP32-C3"]
+    MPU["MPU6050<br/>Gia tốc + con quay"]
+    MAX["MAX30102<br/>Nhịp tim"]
+    ESP["ESP32-C3<br/>Lấy mẫu 50 Hz<br/>Window 100 mẫu"]
+    FSM["FSM cảnh báo tại chỗ<br/>fallState + fallDetectedFlag"]
+    Buzzer["Buzzer<br/>GPIO18"]
+
+    MPU -- "I2C<br/>SDA GPIO4<br/>SCL GPIO5" --> ESP
+    MAX -- "I2C<br/>SDA GPIO4<br/>SCL GPIO5" --> ESP
+    ESP --> FSM
+    FSM --> Buzzer
+  end
+
+  Server["Node.js Server<br/>CoAP + HTTP API"]
+  ML["Flask ML Service<br/>Gradient Boosting"]
+  Web["Website Dashboard<br/>Socket.IO realtime"]
+  App["Flutter App<br/>Cảnh báo + phản hồi"]
+
+  ESP -- "CoAP/UDP<br/>sensor batch" --> Server
+  Server -- "HTTP POST /predict" --> ML
+  ML -- "fall probability<br/>model result" --> Server
+  Server -- "Socket.IO<br/>realtime chart + alert" --> Web
+  Server -- "push/API<br/>fall alert" --> App
+  App -- "safe / need help" --> Server

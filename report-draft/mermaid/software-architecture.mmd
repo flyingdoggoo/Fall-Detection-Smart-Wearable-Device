@@ -1,0 +1,39 @@
+flowchart LR
+  subgraph Device["Firmware ESP32-C3"]
+    SensorTask["Sensor task<br/>MPU6050 + MAX30102"]
+    LocalFSM["FSM task<br/>buzzer + fall flag"]
+    CoAPClient["CoAP client<br/>sensor batch"]
+    SensorTask --> LocalFSM
+    LocalFSM --> CoAPClient
+  end
+
+  subgraph Backend["Node.js Server"]
+    CoAPServer["CoAP endpoint<br/>/api/sensor-batch"]
+    HTTPAPI["HTTP REST API"]
+    Realtime["Socket.IO gateway"]
+    EventStore["Event/device history"]
+    CoAPServer --> HTTPAPI
+    HTTPAPI --> EventStore
+    HTTPAPI --> Realtime
+  end
+
+  subgraph ML["ML Service"]
+    PredictAPI["Flask /predict"]
+    GB["Gradient Boosting model"]
+    PredictAPI --> GB
+  end
+
+  subgraph Clients["Ứng dụng người dùng"]
+    Web["Website dashboard"]
+    App["Flutter app"]
+    Relative["Người thân"]
+    Web --> Realtime
+    App --> HTTPAPI
+    Relative --> App
+  end
+
+  CoAPClient -- "CoAP/UDP" --> CoAPServer
+  HTTPAPI -- "HTTP predict request" --> PredictAPI
+  PredictAPI -- "prediction result" --> HTTPAPI
+  Realtime -- "chart + alert" --> Web
+  HTTPAPI -- "fall alert / response state" --> App

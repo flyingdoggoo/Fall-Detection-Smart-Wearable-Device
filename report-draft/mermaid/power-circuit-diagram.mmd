@@ -1,0 +1,22 @@
+flowchart LR
+  LiPo["Pin LiPo<br/>3.7 V - 2000 mAh"]
+  TP["TP4056<br/>Sạc và bảo vệ pin"]
+  MT["MT3608<br/>Tăng áp lên 5 V"]
+  ESP["ESP32-C3<br/>VIN/5V"]
+  Rail3V3["Đường 3V3 từ ESP32-C3"]
+  Sensors["MPU6050 + MAX30102"]
+  Buzzer["Buzzer"]
+  GND["GND chung"]
+
+  LiPo -- "B+ / B-" --> TP
+  TP -- "OUT+ / OUT-" --> MT
+  MT -- "5 V" --> ESP
+  ESP -- "3V3" --> Rail3V3
+  Rail3V3 --> Sensors
+  ESP -- "GPIO18 + nguồn" --> Buzzer
+
+  TP --- GND
+  MT --- GND
+  ESP --- GND
+  Sensors --- GND
+  Buzzer --- GND

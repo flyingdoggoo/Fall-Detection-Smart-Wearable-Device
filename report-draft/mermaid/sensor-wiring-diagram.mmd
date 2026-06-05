@@ -1,0 +1,41 @@
+flowchart TB
+  subgraph ESP["ESP32-C3"]
+    P3V3["3V3"]
+    PGND["GND"]
+    SDA["GPIO4<br/>I2C SDA"]
+    SCL["GPIO5<br/>I2C SCL"]
+    BUZ["GPIO18<br/>Buzzer control"]
+    BTN["GPIO9<br/>Button input"]
+  end
+
+  subgraph MPU["MPU6050"]
+    MPUV["VCC"]
+    MPUG["GND"]
+    MPUSDA["SDA"]
+    MPUSCL["SCL"]
+  end
+
+  subgraph MAX["MAX30102"]
+    MAXV["VIN/VCC"]
+    MAXG["GND"]
+    MAXSDA["SDA"]
+    MAXSCL["SCL"]
+  end
+
+  subgraph Actuator["Cảnh báo tại chỗ"]
+    Buzzer["Buzzer"]
+    Button["Nút nhấn xác nhận"]
+  end
+
+  P3V3 --> MPUV
+  P3V3 --> MAXV
+  PGND --> MPUG
+  PGND --> MAXG
+  SDA --> MPUSDA
+  SDA --> MAXSDA
+  SCL --> MPUSCL
+  SCL --> MAXSCL
+  BUZ --> Buzzer
+  PGND --> Buzzer
+  BTN --> Button
+  Button --> PGND
