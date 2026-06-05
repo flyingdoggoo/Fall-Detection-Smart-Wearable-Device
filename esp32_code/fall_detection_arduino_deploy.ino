@@ -18,7 +18,7 @@
 
 const char* ssid       = "Veitel";
 const char* password   = "12345667";
-const char* serverHost = "10.30.239.150";
+const char* serverHost = "10.195.218.150";
 const uint16_t serverPort = 5683;
 
 

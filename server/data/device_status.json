@@ -1,20 +1,20 @@
 {
   "connected": true,
-  "last_seen": "2026-04-13T16:24:35.673Z",
+  "last_seen": "2026-06-05T14:39:01.391Z",
   "last_batch_size": 100,
-  "last_bpm": 80,
+  "last_bpm": 85,
   "last_fsm_state": 2,
   "last_features": {
-    "magnitude_avg": 10.617130279541016,
-    "sma": 5.852554798126221,
-    "max_accel": 10.927511215209961,
-    "max_gyro": 1.1440848112106323,
-    "std_accel": 0.25572776794433594,
-    "jerk_peak": 2.9822826385498047
+    "magnitude_avg": 9.267212867736816,
+    "sma": 4.441256999969482,
+    "max_accel": 9.275400161743164,
+    "max_gyro": 0.20857374370098114,
+    "std_accel": 0.0026677572168409824,
+    "jerk_peak": 0.18711090087890625
   },
   "last_prediction": {
-    "fall_detected": true,
-    "confidence": 0.6304,
+    "fall_detected": false,
+    "confidence": 0.4016,
     "model_version": "final_rf_model",
     "backend": "random_forest",
     "threshold": 0.5,
@@ -22,6 +22,6 @@
     "warnings": [],
     "available": true
   },
-  "last_fall_at": "2026-04-13T16:24:15.711Z",
-  "updated_at": "2026-04-13T16:24:35.673Z"
+  "last_fall_at": "2026-06-05T14:38:59.690Z",
+  "updated_at": "2026-06-05T14:39:01.391Z"
 }

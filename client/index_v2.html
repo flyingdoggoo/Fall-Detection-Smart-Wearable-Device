@@ -580,6 +580,21 @@
                 <div class="value" id="windowSize">--</div>
                 <div class="unit">samples</div>
             </div>
+            <div class="stat-card">
+                <h4>ML STATUS</h4>
+                <div class="value" id="mlStatus">--</div>
+                <div class="unit">state</div>
+            </div>
+            <div class="stat-card">
+                <h4>INFERENCE TIME</h4>
+                <div class="value" id="inferenceDuration">--</div>
+                <div class="unit">ms</div>
+            </div>
+            <div class="stat-card">
+                <h4>FALL LATENCY</h4>
+                <div class="value" id="fallLatency">--</div>
+                <div class="unit">ms</div>
+            </div>
         </div>
 
         <div class="charts-container">
@@ -612,11 +627,14 @@
         let packetCount = 0;
         let disconnectUiTimer = null;
         let lastFallEvent = null;
+        const DEFAULT_SERVER_URL = 'http://10.195.218.150:3000';
+        const chartPointLimit = 300;
+        const charts = {};
 
         function getDefaultServerUrl() {
             const host = window.location.hostname;
             if (!host || host === 'localhost' || host === '127.0.0.1') {
-                return 'http://localhost:3000';
+                return DEFAULT_SERVER_URL;
             }
             return `http://${host}:3000`;
         }
@@ -729,6 +747,148 @@
             const el = document.getElementById(id);
             if (el) {
                 el.textContent = value;
+            }
+        }
+
+        function toFiniteNumber(value) {
+            const parsed = Number(value);
+            return Number.isFinite(parsed) ? parsed : null;
+        }
+
+        function formatValue(value, digits = 2) {
+            const parsed = toFiniteNumber(value);
+            return parsed === null ? '--' : parsed.toFixed(digits);
+        }
+
+        function formatMs(value) {
+            const parsed = toFiniteNumber(value);
+            return parsed === null ? '--' : Math.round(parsed).toString();
+        }
+
+        function initializeCharts() {
+            if (!window.Chart || charts.accel) {
+                return;
+            }
+
+            charts.accel = createLineChart('accelChart', [
+                { label: 'Ax', borderColor: '#ef4444' },
+                { label: 'Ay', borderColor: '#10b981' },
+                { label: 'Az', borderColor: '#3b82f6' },
+            ]);
+            charts.gyro = createLineChart('gyroChart', [
+                { label: 'Gx', borderColor: '#f97316' },
+                { label: 'Gy', borderColor: '#8b5cf6' },
+                { label: 'Gz', borderColor: '#06b6d4' },
+            ]);
+            charts.magnitude = createLineChart('magnitudeChart', [
+                { label: 'Magnitude', borderColor: '#dc2626' },
+                { label: 'SMA', borderColor: '#64748b' },
+            ]);
+            charts.bpm = createLineChart('bpmChart', [
+                { label: 'BPM', borderColor: '#e11d48' },
+            ]);
+        }
+
+        function createLineChart(canvasId, datasets) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) {
+                return null;
+            }
+
+            return new Chart(canvas, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: datasets.map((dataset) => ({
+                        ...dataset,
+                        data: [],
+                        borderWidth: 2,
+                        pointRadius: 0,
+                        tension: 0.18,
+                    })),
+                },
+                options: {
+                    responsive: true,
+                    animation: false,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        intersect: false,
+                        mode: 'index',
+                    },
+                    scales: {
+                        x: {
+                            ticks: {
+                                maxTicksLimit: 8,
+                            },
+                        },
+                    },
+                },
+            });
+        }
+
+        function appendChartRows(chart, labels, rows) {
+            if (!chart || !Array.isArray(labels) || !Array.isArray(rows)) {
+                return;
+            }
+
+            labels.forEach((label, index) => {
+                chart.data.labels.push(label);
+                const row = rows[index] || [];
+                chart.data.datasets.forEach((dataset, datasetIndex) => {
+                    dataset.data.push(row[datasetIndex] ?? null);
+                });
+            });
+
+            while (chart.data.labels.length > chartPointLimit) {
+                chart.data.labels.shift();
+                chart.data.datasets.forEach((dataset) => dataset.data.shift());
+            }
+
+            chart.update('none');
+        }
+
+        function appendSensorBatchToCharts(data) {
+            initializeCharts();
+            const accel = Array.isArray(data?.accel_data) ? data.accel_data : [];
+            const gyro = Array.isArray(data?.gyro_data) ? data.gyro_data : [];
+            const sampleCount = Math.min(accel.length, gyro.length);
+            const labels = [];
+            const accelRows = [];
+            const gyroRows = [];
+            const magnitudeRows = [];
+            const sma = toFiniteNumber(data?.features?.sma);
+
+            for (let index = 0; index < sampleCount; index += 1) {
+                const a = accel[index] || {};
+                const g = gyro[index] || {};
+                const ax = toFiniteNumber(a.x);
+                const ay = toFiniteNumber(a.y);
+                const az = toFiniteNumber(a.z);
+                const gx = toFiniteNumber(g.x);
+                const gy = toFiniteNumber(g.y);
+                const gz = toFiniteNumber(g.z);
+                const label = a.t ?? g.t ?? `${packetCount}.${index}`;
+                const magnitude = [ax, ay, az].every((v) => v !== null)
+                    ? Math.sqrt((ax * ax) + (ay * ay) + (az * az))
+                    : null;
+
+                labels.push(typeof label === 'number' ? label.toFixed(2) : String(label));
+                accelRows.push([ax, ay, az]);
+                gyroRows.push([gx, gy, gz]);
+                magnitudeRows.push([magnitude, sma]);
+            }
+
+            appendChartRows(charts.accel, labels, accelRows);
+            appendChartRows(charts.gyro, labels, gyroRows);
+            appendChartRows(charts.magnitude, labels, magnitudeRows);
+
+            const bpm = toFiniteNumber(data?.bpm);
+            if (bpm !== null) {
+                appendChartRows(
+                    charts.bpm,
+                    [new Date().toLocaleTimeString()],
+                    [[bpm]],
+                );
             }
         }
 
@@ -900,10 +1060,20 @@
                 setText('bpm', data?.bpm ?? '--');
                 setText('windowSize', data?.window_size ?? '--');
                 const f = data?.features || {};
-                setText('magnitude', f.magnitude_avg ?? '--');
-                setText('sma', f.sma ?? '--');
-                setText('maxAccel', f.max_accel ?? '--');
-                setText('maxGyro', f.max_gyro ?? '--');
+                setText('magnitude', formatValue(f.magnitude_avg));
+                setText('sma', formatValue(f.sma));
+                setText('maxAccel', formatValue(f.max_accel));
+                setText('maxGyro', formatValue(f.max_gyro));
+
+                const timing = data?.timing || {};
+                const mlResult = data?.ml_result || {};
+                const mlStatus = data?.ml_processed
+                    ? (mlResult.fall_detected ? 'FALL' : 'NORMAL')
+                    : (data?.ml_skip_reason || mlResult.reason || 'skipped');
+                setText('mlStatus', mlStatus);
+                setText('inferenceDuration', formatMs(timing.inference_duration_ms));
+                setText('fallLatency', formatMs(timing.fall_detection_latency_ms));
+                appendSensorBatchToCharts(data);
             });
 
             socket.on('fallDetected', (event) => {
@@ -1004,6 +1174,7 @@
         }
 
         initializeServerUrlInput();
+        initializeCharts();
         reconnect();
         setInterval(refreshStatus, 10000);
         setInterval(refreshDeviceStatus, 10000);

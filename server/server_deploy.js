@@ -85,6 +85,7 @@ const TOKENS_FILE = path.join(DATA_ROOT, "fcm_tokens.json");
 const FALL_HISTORY_FILE = path.join(DATA_ROOT, "fall_history.json");
 const DEVICE_STATUS_FILE = path.join(DATA_ROOT, "device_status.json");
 const COMMUNICATION_LOG_FILE = path.join(DATA_ROOT, "communication_log.json");
+const WEARER_LOCATION_FILE = path.join(DATA_ROOT, "wearer_location.json");
 const FIREBASE_SERVICE_ACCOUNT_FILE = path.join(__dirname, "firebase-service-account.json");
 
 const deviceStatus = {
@@ -107,6 +108,7 @@ ensureJsonFile(TOKENS_FILE, []);
 ensureJsonFile(FALL_HISTORY_FILE, []);
 ensureJsonFile(DEVICE_STATUS_FILE, deviceStatus);
 ensureJsonFile(COMMUNICATION_LOG_FILE, []);
+ensureJsonFile(WEARER_LOCATION_FILE, null);
 
 const firebaseState = initializeFirebase();
 
@@ -172,7 +174,12 @@ async function processSensorBatch(batchData, source = "http") {
         };
     }
 
-    logJson(`[/${source}/sensor-batch] request`, summarizeBatchData(batchData));
+    const batchReceivedAtMs = Date.now();
+    const batchReceivedAt = new Date(batchReceivedAtMs).toISOString();
+    logJson(`[/${source}/sensor-batch] request`, {
+        ...summarizeBatchData(batchData),
+        batch_received_at: batchReceivedAt,
+    });
 
     updateDeviceStatus(batchData);
 
@@ -188,22 +195,67 @@ async function processSensorBatch(batchData, source = "http") {
         });
     }
 
-    const mlInputBatch = enqueueAndMaybeBuildMlBatch(batchData);
-    if (!mlInputBatch) {
+    emitHeartRateUpdate(batchData, source, batchReceivedAt);
+
+    const shouldInfer = shouldRunInference(batchData);
+    if (!shouldInfer) {
+        resetPendingMlWindow();
         const responsePayload = {
             success: true,
-            message: "Batch received. Waiting for 100 samples before ML inference",
+            message: "Batch received. ML inference skipped because FSM is not impact",
             session_id: null,
             label: null,
             clients: connectedClients,
             ml_processed: false,
             ml_fall_detected: false,
+            ml_skip_reason: "fsm_not_impact",
+            confidence: 0,
+            model_version: null,
+            ml_backend: null,
+            fall_event_id: null,
+            buffered_samples: 0,
+            required_samples: ML_WINDOW_SAMPLES,
+            timing: buildSensorTiming(batchReceivedAt, null, null, null),
+        };
+
+        io.emit("sensorBatch", {
+            ...batchData,
+            ml_result: {
+                available: false,
+                fall_detected: false,
+                confidence: 0,
+                reason: "fsm_not_impact",
+            },
+            session_id: null,
+            source,
+            ml_processed: false,
+            ml_skip_reason: "fsm_not_impact",
+            buffered_samples: 0,
+            timing: responsePayload.timing,
+        });
+
+        logJson(`[/${source}/sensor-batch] response`, responsePayload);
+        return { statusCode: 200, payload: responsePayload };
+    }
+
+    const mlInputBatch = enqueueAndMaybeBuildMlBatch(batchData);
+    if (!mlInputBatch) {
+        const responsePayload = {
+            success: true,
+            message: "Impact batch received. Waiting for 100 samples before ML inference",
+            session_id: null,
+            label: null,
+            clients: connectedClients,
+            ml_processed: false,
+            ml_fall_detected: false,
+            ml_skip_reason: "waiting_for_full_window",
             confidence: 0,
             model_version: null,
             ml_backend: null,
             fall_event_id: null,
             buffered_samples: pendingMlWindow.accel_data.length,
             required_samples: ML_WINDOW_SAMPLES,
+            timing: buildSensorTiming(batchReceivedAt, null, null, null),
         };
 
         io.emit("sensorBatch", {
@@ -216,15 +268,29 @@ async function processSensorBatch(batchData, source = "http") {
             },
             session_id: null,
             source,
+            ml_processed: false,
+            ml_skip_reason: "waiting_for_full_window",
             buffered_samples: pendingMlWindow.accel_data.length,
+            timing: responsePayload.timing,
         });
 
         logJson(`[/${source}/sensor-batch] response`, responsePayload);
         return { statusCode: 200, payload: responsePayload };
     }
 
+    const inferenceStartedAtMs = Date.now();
+    const inferenceStartedAt = new Date(inferenceStartedAtMs).toISOString();
     const mlResult = await predictFall(mlInputBatch);
+    const inferenceFinishedAtMs = Date.now();
+    const inferenceFinishedAt = new Date(inferenceFinishedAtMs).toISOString();
+    const timing = buildSensorTiming(
+        batchReceivedAt,
+        inferenceStartedAt,
+        inferenceFinishedAt,
+        inferenceFinishedAtMs - inferenceStartedAtMs,
+    );
     logJson(`[/${source}/sensor-batch] ml_result`, mlResult);
+    logJson(`[/${source}/sensor-batch] inference_timing`, timing);
     deviceStatus.last_prediction = mlResult;
     writeJsonFile(DEVICE_STATUS_FILE, deviceStatus);
 
@@ -232,6 +298,10 @@ async function processSensorBatch(batchData, source = "http") {
         mlInputBatch,
         mlResult,
         Boolean(mlInputBatch.fall_detected),
+        {
+            ...timing,
+            batch_received_at_ms: batchReceivedAtMs,
+        },
     );
 
     const batchForBroadcast = {
@@ -239,7 +309,13 @@ async function processSensorBatch(batchData, source = "http") {
         ml_result: mlResult,
         session_id: null,
         source,
+        ml_processed: true,
         buffered_samples: pendingMlWindow.accel_data.length,
+        timing: {
+            ...timing,
+            fall_detected_at: triggeredFallEvent?.fall_detected_at || null,
+            fall_detection_latency_ms: triggeredFallEvent?.fall_detection_latency_ms ?? null,
+        },
     };
     io.emit("sensorBatch", batchForBroadcast);
 
@@ -257,6 +333,7 @@ async function processSensorBatch(batchData, source = "http") {
         ml_processed: true,
         buffered_samples: pendingMlWindow.accel_data.length,
         required_samples: ML_WINDOW_SAMPLES,
+        timing: batchForBroadcast.timing,
     };
 
     logJson(`[/${source}/sensor-batch] response`, responsePayload);
@@ -290,7 +367,44 @@ function enqueueAndMaybeBuildMlBatch(batchData) {
     return mlBatch;
 }
 
-// Receive one full sensor window, run ML, and emit updates (deploy mode).
+function shouldRunInference(batchData) {
+    return safeNumber(batchData?.fsm_state, -1) === 2;
+}
+
+function resetPendingMlWindow() {
+    pendingMlWindow = {
+        accel_data: [],
+        gyro_data: [],
+        esp32_fall_detected: false,
+    };
+}
+
+function buildSensorTiming(batchReceivedAt, inferenceStartedAt, inferenceFinishedAt, inferenceDurationMs) {
+    return {
+        batch_received_at: batchReceivedAt,
+        inference_started_at: inferenceStartedAt,
+        inference_finished_at: inferenceFinishedAt,
+        inference_duration_ms: inferenceDurationMs,
+        fall_detected_at: null,
+        fall_detection_latency_ms: null,
+    };
+}
+
+function emitHeartRateUpdate(batchData, source, timestamp) {
+    const bpm = safeNullableNumber(batchData?.bpm);
+    if (bpm === null) {
+        return;
+    }
+
+    io.emit("heartRateUpdated", {
+        bpm,
+        timestamp,
+        session_id: null,
+        source,
+    });
+}
+
+// Receive sensor telemetry, broadcast it, and run ML only for impact-state windows.
 app.post("/api/sensor-batch", async (req, res) => {
     const result = await processSensorBatch(req.body || {}, "http");
     return res.status(result.statusCode).json(result.payload);
@@ -503,6 +617,33 @@ app.get("/api/device/status", (req, res) => {
     res.json({
         success: true,
         device: getComputedDeviceStatus(),
+    });
+});
+
+app.post("/api/wearer-location", (req, res) => {
+    const location = sanitizeWearerLocation(req.body || {});
+    if (!location) {
+        return res.status(400).json({
+            success: false,
+            error: "Missing valid lat/lng",
+        });
+    }
+
+    writeJsonFile(WEARER_LOCATION_FILE, location);
+    io.emit("wearerLocationUpdated", location);
+    logJson("[/api/wearer-location] updated", location);
+
+    return res.json({
+        success: true,
+        location,
+    });
+});
+
+app.get("/api/wearer-location", (req, res) => {
+    const location = readJsonFile(WEARER_LOCATION_FILE, null);
+    res.json({
+        success: true,
+        location,
     });
 });
 
@@ -973,7 +1114,7 @@ async function predictFall(batchData) {
 }
 
 // Decide whether an ML prediction should become a real fall event.
-async function maybeHandleFallDetection(batchData, mlResult, esp32FallDetected) {
+async function maybeHandleFallDetection(batchData, mlResult, esp32FallDetected, timing = {}) {
     const decisionThreshold = resolveFallThreshold(mlResult);
     const qualifies = Boolean(mlResult.fall_detected) && safeNumber(mlResult.confidence) >= decisionThreshold;
     if (!qualifies) {
@@ -990,9 +1131,15 @@ async function maybeHandleFallDetection(batchData, mlResult, esp32FallDetected) 
     deviceStatus.last_fall_at = new Date(now).toISOString();
     writeJsonFile(DEVICE_STATUS_FILE, deviceStatus);
 
+    const detectedAt = new Date(now).toISOString();
+    const batchReceivedAtMs = Number.isFinite(Number(timing.batch_received_at_ms))
+        ? Number(timing.batch_received_at_ms)
+        : now;
+    const fallDetectionLatencyMs = Math.max(0, now - batchReceivedAtMs);
+
     const fallEvent = {
         id: crypto.randomUUID(),
-        timestamp: new Date(now).toISOString(),
+        timestamp: detectedAt,
         session_id: null,
         confidence: safeNumber(mlResult.confidence),
         threshold: decisionThreshold,
@@ -1003,10 +1150,26 @@ async function maybeHandleFallDetection(batchData, mlResult, esp32FallDetected) 
         features: batchData.features || {},
         fsm_state: batchData.fsm_state ?? null,
         bpm: safeNullableNumber(batchData.bpm),
+        batch_received_at: timing.batch_received_at || null,
+        inference_started_at: timing.inference_started_at || null,
+        inference_finished_at: timing.inference_finished_at || null,
+        inference_duration_ms: safeNullableNumber(timing.inference_duration_ms),
+        fall_detected_at: detectedAt,
+        fall_detection_latency_ms: fallDetectionLatencyMs,
         notification: {
             requested_at: new Date(now).toISOString(),
         },
     };
+
+    logJson("[fall-detection] timing", {
+        event_id: fallEvent.id,
+        batch_received_at: fallEvent.batch_received_at,
+        inference_started_at: fallEvent.inference_started_at,
+        inference_finished_at: fallEvent.inference_finished_at,
+        inference_duration_ms: fallEvent.inference_duration_ms,
+        fall_detected_at: fallEvent.fall_detected_at,
+        fall_detection_latency_ms: fallEvent.fall_detection_latency_ms,
+    });
 
     const notificationResult = await sendFallNotifications(fallEvent, {
         targetRoles: ["owner"],
@@ -1227,6 +1390,30 @@ function getFallEventById(eventId) {
     }
     const fallHistory = readJsonFile(FALL_HISTORY_FILE, []);
     return fallHistory.find((entry) => entry.id === eventId) || null;
+}
+
+function sanitizeWearerLocation(payload) {
+    if (!payload || typeof payload !== "object") {
+        return null;
+    }
+
+    const lat = safeNullableNumber(payload.lat ?? payload.latitude);
+    const lng = safeNullableNumber(payload.lng ?? payload.longitude);
+    if (lat === null || lng === null || lat < -90 || lat > 90 || lng < -180 || lng > 180) {
+        return null;
+    }
+
+    return {
+        lat,
+        lng,
+        accuracy_m: safeNullableNumber(payload.accuracy_m ?? payload.accuracy),
+        speed_mps: safeNullableNumber(payload.speed_mps ?? payload.speed),
+        heading: safeNullableNumber(payload.heading),
+        source: typeof payload.source === "string" && payload.source.trim()
+            ? payload.source.trim()
+            : "owner_phone",
+        updated_at: new Date().toISOString(),
+    };
 }
 
 // Keep only valid contact entries to avoid dispatch failures.

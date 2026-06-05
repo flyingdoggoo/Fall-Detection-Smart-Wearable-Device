@@ -1,702 +1,1260 @@
 [
   {
     "type": "push",
-    "event_id": "b126b7ae-19dc-4e63-80ac-46eccb163e09",
-    "stage": "pending_repeat",
+    "event_id": "3962c92c-9105-43ea-859e-a3efaeb8eaa6",
+    "stage": "alerted_repeat",
     "target_roles": [
-      "owner"
+      "relative"
     ],
     "result": {
       "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
+      "reason": "No registered FCM tokens",
+      "token_count": 0
     },
-    "requested_at": "2026-04-13T16:24:45.717Z"
+    "requested_at": "2026-06-05T14:39:35.088Z"
   },
   {
     "type": "push",
-    "event_id": "d6d6ceef-c4b6-41a5-a60a-5f097a21798a",
-    "stage": "pending_repeat",
+    "event_id": "3962c92c-9105-43ea-859e-a3efaeb8eaa6",
+    "stage": "alerted_repeat",
     "target_roles": [
-      "owner"
+      "relative"
     ],
     "result": {
       "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
+      "reason": "No registered FCM tokens",
+      "token_count": 0
     },
-    "requested_at": "2026-04-13T16:24:45.069Z"
+    "requested_at": "2026-06-05T14:39:20.087Z"
   },
   {
-    "type": "push",
-    "event_id": "e57c0389-d223-4461-b81a-48b42bd9a6a9",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
+    "type": "sms",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:39:05.113Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:39:05.113Z"
+      }
     ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:24:43.865Z"
+    "message": "Emergency fall alert (owner_confirmed_fall). Event 3962c92c-9105-43ea-859e-a3efaeb8eaa6. Location unavailable.",
+    "reason": "owner_confirmed_fall",
+    "source": "owner_app",
+    "event_id": "3962c92c-9105-43ea-859e-a3efaeb8eaa6",
+    "requested_at": "2026-06-05T14:39:05.113Z",
+    "metadata": {
+      "location": null
+    }
   },
   {
-    "type": "push",
-    "event_id": "a2f4626c-edc3-427a-a4d4-fc7b68ad79c8",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
+    "type": "call",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:39:05.110Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:39:05.110Z"
+      }
     ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:24:39.629Z"
+    "reason": "owner_confirmed_fall",
+    "source": "owner_app",
+    "event_id": "3962c92c-9105-43ea-859e-a3efaeb8eaa6",
+    "requested_at": "2026-06-05T14:39:05.110Z",
+    "metadata": {
+      "location": null
+    }
   },
   {
-    "type": "push",
-    "event_id": "254ae09b-6a8c-427d-9881-d1a9c289b67f",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
+    "type": "sms",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:38:41.967Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:38:41.967Z"
+      }
     ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:24:36.092Z"
+    "message": "Emergency fall alert (owner_timeout). Event 0ad7de74-d50b-4c6c-a3d8-efbb610a12ce. Location unavailable.",
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
+    "event_id": "0ad7de74-d50b-4c6c-a3d8-efbb610a12ce",
+    "requested_at": "2026-06-05T14:38:41.967Z",
+    "metadata": {
+      "location": null
+    }
   },
   {
-    "type": "push",
-    "event_id": "b126b7ae-19dc-4e63-80ac-46eccb163e09",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
+    "type": "call",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:38:41.964Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:38:41.964Z"
+      }
     ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:24:30.713Z"
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
+    "event_id": "0ad7de74-d50b-4c6c-a3d8-efbb610a12ce",
+    "requested_at": "2026-06-05T14:38:41.964Z",
+    "metadata": {
+      "location": null
+    }
   },
   {
-    "type": "push",
-    "event_id": "d6d6ceef-c4b6-41a5-a60a-5f097a21798a",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
+    "type": "sms",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:38:36.979Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:38:36.979Z"
+      }
     ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:24:30.061Z"
+    "message": "Emergency fall alert (owner_timeout). Event 319e0964-5885-4d13-9752-4fa94e0708fc. Location unavailable.",
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
+    "event_id": "319e0964-5885-4d13-9752-4fa94e0708fc",
+    "requested_at": "2026-06-05T14:38:36.979Z",
+    "metadata": {
+      "location": null
+    }
   },
   {
-    "type": "push",
-    "event_id": "e57c0389-d223-4461-b81a-48b42bd9a6a9",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
+    "type": "call",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:38:36.976Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:38:36.976Z"
+      }
     ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:24:28.855Z"
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
+    "event_id": "319e0964-5885-4d13-9752-4fa94e0708fc",
+    "requested_at": "2026-06-05T14:38:36.976Z",
+    "metadata": {
+      "location": null
+    }
   },
   {
-    "type": "push",
-    "event_id": "a2f4626c-edc3-427a-a4d4-fc7b68ad79c8",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
+    "type": "sms",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:38:31.942Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:38:31.942Z"
+      }
     ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:24:24.623Z"
+    "message": "Emergency fall alert (owner_timeout). Event d0d10f5d-ae5e-43b9-b942-7b4c60b445d9. Location unavailable.",
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
+    "event_id": "d0d10f5d-ae5e-43b9-b942-7b4c60b445d9",
+    "requested_at": "2026-06-05T14:38:31.942Z",
+    "metadata": {
+      "location": null
+    }
   },
   {
-    "type": "push",
-    "event_id": "254ae09b-6a8c-427d-9881-d1a9c289b67f",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
+    "type": "call",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:38:31.940Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:38:31.940Z"
+      }
     ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:24:21.078Z"
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
+    "event_id": "d0d10f5d-ae5e-43b9-b942-7b4c60b445d9",
+    "requested_at": "2026-06-05T14:38:31.940Z",
+    "metadata": {
+      "location": null
+    }
   },
   {
-    "type": "push",
-    "event_id": "d6d6ceef-c4b6-41a5-a60a-5f097a21798a",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
+    "type": "sms",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:38:26.972Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:38:26.972Z"
+      }
     ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:24:15.051Z"
+    "message": "Emergency fall alert (owner_timeout). Event 34b9faeb-30d8-4139-8a9e-84772b5ca056. Location unavailable.",
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
+    "event_id": "34b9faeb-30d8-4139-8a9e-84772b5ca056",
+    "requested_at": "2026-06-05T14:38:26.972Z",
+    "metadata": {
+      "location": null
+    }
   },
   {
-    "type": "push",
-    "event_id": "e57c0389-d223-4461-b81a-48b42bd9a6a9",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
+    "type": "call",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:38:26.969Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:38:26.969Z"
+      }
     ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:24:13.842Z"
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
+    "event_id": "34b9faeb-30d8-4139-8a9e-84772b5ca056",
+    "requested_at": "2026-06-05T14:38:26.969Z",
+    "metadata": {
+      "location": null
+    }
   },
   {
-    "type": "push",
-    "event_id": "a2f4626c-edc3-427a-a4d4-fc7b68ad79c8",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
+    "type": "sms",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:38:16.992Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:38:16.992Z"
+      }
     ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:24:09.617Z"
+    "message": "Emergency fall alert (owner_timeout). Event 9c97fd1b-40af-446a-b63c-d7faf4b51d40. Location unavailable.",
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
+    "event_id": "9c97fd1b-40af-446a-b63c-d7faf4b51d40",
+    "requested_at": "2026-06-05T14:38:16.992Z",
+    "metadata": {
+      "location": null
+    }
   },
   {
-    "type": "push",
-    "event_id": "254ae09b-6a8c-427d-9881-d1a9c289b67f",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
+    "type": "call",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:38:16.990Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:38:16.990Z"
+      }
     ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:24:06.073Z"
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
+    "event_id": "9c97fd1b-40af-446a-b63c-d7faf4b51d40",
+    "requested_at": "2026-06-05T14:38:16.990Z",
+    "metadata": {
+      "location": null
+    }
   },
   {
-    "type": "push",
-    "event_id": "d6d6ceef-c4b6-41a5-a60a-5f097a21798a",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
+    "type": "sms",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:38:11.948Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:38:11.948Z"
+      }
     ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:24:00.044Z"
+    "message": "Emergency fall alert (owner_timeout). Event 12bbb491-02c0-4431-a9d8-c7486d537bc0. Location unavailable.",
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
+    "event_id": "12bbb491-02c0-4431-a9d8-c7486d537bc0",
+    "requested_at": "2026-06-05T14:38:11.948Z",
+    "metadata": {
+      "location": null
+    }
   },
   {
-    "type": "push",
-    "event_id": "e57c0389-d223-4461-b81a-48b42bd9a6a9",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
+    "type": "call",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:38:11.946Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:38:11.946Z"
+      }
     ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:23:58.828Z"
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
+    "event_id": "12bbb491-02c0-4431-a9d8-c7486d537bc0",
+    "requested_at": "2026-06-05T14:38:11.946Z",
+    "metadata": {
+      "location": null
+    }
   },
   {
-    "type": "push",
-    "event_id": "a2f4626c-edc3-427a-a4d4-fc7b68ad79c8",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
+    "type": "sms",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:38:06.960Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:38:06.960Z"
+      }
     ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:23:54.613Z"
+    "message": "Emergency fall alert (owner_timeout). Event 5fbe48f7-97b3-4d9b-96ef-cf7d8a4ec9b8. Location unavailable.",
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
+    "event_id": "5fbe48f7-97b3-4d9b-96ef-cf7d8a4ec9b8",
+    "requested_at": "2026-06-05T14:38:06.960Z",
+    "metadata": {
+      "location": null
+    }
   },
   {
-    "type": "push",
-    "event_id": "254ae09b-6a8c-427d-9881-d1a9c289b67f",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
+    "type": "call",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:38:06.958Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:38:06.958Z"
+      }
     ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:23:51.070Z"
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
+    "event_id": "5fbe48f7-97b3-4d9b-96ef-cf7d8a4ec9b8",
+    "requested_at": "2026-06-05T14:38:06.958Z",
+    "metadata": {
+      "location": null
+    }
   },
   {
-    "type": "push",
-    "event_id": "d6d6ceef-c4b6-41a5-a60a-5f097a21798a",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
+    "type": "sms",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:38:01.962Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:38:01.962Z"
+      }
     ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:23:45.039Z"
-  },
-  {
-    "type": "push",
-    "event_id": "a2f4626c-edc3-427a-a4d4-fc7b68ad79c8",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
-    ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:23:39.607Z"
-  },
-  {
-    "type": "push",
-    "event_id": "254ae09b-6a8c-427d-9881-d1a9c289b67f",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
-    ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:23:36.066Z"
-  },
-  {
-    "type": "push",
-    "event_id": "d6d6ceef-c4b6-41a5-a60a-5f097a21798a",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
-    ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:23:30.026Z"
-  },
-  {
-    "type": "push",
-    "event_id": "a2f4626c-edc3-427a-a4d4-fc7b68ad79c8",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
-    ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:23:24.605Z"
-  },
-  {
-    "type": "push",
-    "event_id": "254ae09b-6a8c-427d-9881-d1a9c289b67f",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
-    ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:23:21.060Z"
-  },
-  {
-    "type": "push",
-    "event_id": "d6d6ceef-c4b6-41a5-a60a-5f097a21798a",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
-    ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:23:15.021Z"
-  },
-  {
-    "type": "push",
-    "event_id": "a2f4626c-edc3-427a-a4d4-fc7b68ad79c8",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
-    ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:23:09.602Z"
-  },
-  {
-    "type": "push",
-    "event_id": "254ae09b-6a8c-427d-9881-d1a9c289b67f",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
-    ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:23:06.057Z"
-  },
-  {
-    "type": "push",
-    "event_id": "d6d6ceef-c4b6-41a5-a60a-5f097a21798a",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
-    ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:23:00.020Z"
-  },
-  {
-    "type": "push",
-    "event_id": "a2f4626c-edc3-427a-a4d4-fc7b68ad79c8",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
-    ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:22:54.593Z"
-  },
-  {
-    "type": "push",
-    "event_id": "254ae09b-6a8c-427d-9881-d1a9c289b67f",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
-    ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:22:51.051Z"
-  },
-  {
-    "type": "push",
-    "event_id": "d6d6ceef-c4b6-41a5-a60a-5f097a21798a",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
-    ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:22:45.008Z"
-  },
-  {
-    "type": "push",
-    "event_id": "a2f4626c-edc3-427a-a4d4-fc7b68ad79c8",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
-    ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:22:39.587Z"
-  },
-  {
-    "type": "push",
-    "event_id": "254ae09b-6a8c-427d-9881-d1a9c289b67f",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
-    ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:22:36.039Z"
-  },
-  {
-    "type": "push",
-    "event_id": "a2f4626c-edc3-427a-a4d4-fc7b68ad79c8",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
-    ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:22:24.586Z"
-  },
-  {
-    "type": "push",
-    "event_id": "254ae09b-6a8c-427d-9881-d1a9c289b67f",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
-    ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:22:21.039Z"
-  },
-  {
-    "type": "push",
-    "event_id": "a2f4626c-edc3-427a-a4d4-fc7b68ad79c8",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
-    ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:22:09.572Z"
-  },
-  {
-    "type": "push",
-    "event_id": "254ae09b-6a8c-427d-9881-d1a9c289b67f",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
-    ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:22:06.028Z"
-  },
-  {
-    "type": "push",
-    "event_id": "254ae09b-6a8c-427d-9881-d1a9c289b67f",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
-    ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:21:51.020Z"
-  },
-  {
-    "type": "push",
-    "event_id": "254ae09b-6a8c-427d-9881-d1a9c289b67f",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
-    ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:21:36.009Z"
-  },
-  {
-    "type": "push",
-    "event_id": "254ae09b-6a8c-427d-9881-d1a9c289b67f",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
-    ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:21:20.996Z"
-  },
-  {
-    "type": "push",
-    "event_id": "9c61695a-139c-4781-8825-f539812cc6f3",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
-    ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:20:01.670Z"
-  },
-  {
-    "type": "push",
-    "event_id": "6030894a-6aff-4876-b0cc-f7d0b1bf425a",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
-    ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:19:57.670Z"
-  },
-  {
-    "type": "push",
-    "event_id": "28cba499-38e0-4e76-b32d-7e8d9d2436e4",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
-    ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:19:57.654Z"
-  },
-  {
-    "type": "push",
+    "message": "Emergency fall alert (owner_timeout). Event e0ae9799-9648-4ad8-856e-d7a494947f75. Location unavailable.",
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
     "event_id": "e0ae9799-9648-4ad8-856e-d7a494947f75",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
-    ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:19:57.030Z"
+    "requested_at": "2026-06-05T14:38:01.962Z",
+    "metadata": {
+      "location": null
+    }
   },
   {
-    "type": "push",
-    "event_id": "6047708b-0867-41f6-bc48-0b2d24c7c16e",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
+    "type": "call",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:38:01.958Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:38:01.958Z"
+      }
     ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:19:56.662Z"
-  },
-  {
-    "type": "push",
-    "event_id": "9c61695a-139c-4781-8825-f539812cc6f3",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
-    ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:19:46.657Z"
-  },
-  {
-    "type": "push",
-    "event_id": "6030894a-6aff-4876-b0cc-f7d0b1bf425a",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
-    ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:19:42.669Z"
-  },
-  {
-    "type": "push",
-    "event_id": "28cba499-38e0-4e76-b32d-7e8d9d2436e4",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
-    ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:19:42.653Z"
-  },
-  {
-    "type": "push",
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
     "event_id": "e0ae9799-9648-4ad8-856e-d7a494947f75",
-    "stage": "pending_repeat",
-    "target_roles": [
-      "owner"
+    "requested_at": "2026-06-05T14:38:01.958Z",
+    "metadata": {
+      "location": null
+    }
+  },
+  {
+    "type": "sms",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:56.932Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:56.932Z"
+      }
     ],
-    "result": {
-      "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
-    },
-    "requested_at": "2026-04-13T16:19:42.027Z"
+    "message": "Emergency fall alert (owner_timeout). Event 28cba499-38e0-4e76-b32d-7e8d9d2436e4. Location unavailable.",
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
+    "event_id": "28cba499-38e0-4e76-b32d-7e8d9d2436e4",
+    "requested_at": "2026-06-05T14:37:56.932Z",
+    "metadata": {
+      "location": null
+    }
+  },
+  {
+    "type": "call",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:56.930Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:56.930Z"
+      }
+    ],
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
+    "event_id": "28cba499-38e0-4e76-b32d-7e8d9d2436e4",
+    "requested_at": "2026-06-05T14:37:56.930Z",
+    "metadata": {
+      "location": null
+    }
+  },
+  {
+    "type": "sms",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:51.961Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:51.961Z"
+      }
+    ],
+    "message": "Emergency fall alert (owner_timeout). Event 6030894a-6aff-4876-b0cc-f7d0b1bf425a. Location unavailable.",
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
+    "event_id": "6030894a-6aff-4876-b0cc-f7d0b1bf425a",
+    "requested_at": "2026-06-05T14:37:51.961Z",
+    "metadata": {
+      "location": null
+    }
+  },
+  {
+    "type": "call",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:51.959Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:51.959Z"
+      }
+    ],
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
+    "event_id": "6030894a-6aff-4876-b0cc-f7d0b1bf425a",
+    "requested_at": "2026-06-05T14:37:51.959Z",
+    "metadata": {
+      "location": null
+    }
+  },
+  {
+    "type": "sms",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:46.984Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:46.984Z"
+      }
+    ],
+    "message": "Emergency fall alert (owner_timeout). Event 9c61695a-139c-4781-8825-f539812cc6f3. Location unavailable.",
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
+    "event_id": "9c61695a-139c-4781-8825-f539812cc6f3",
+    "requested_at": "2026-06-05T14:37:46.984Z",
+    "metadata": {
+      "location": null
+    }
+  },
+  {
+    "type": "call",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:46.982Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:46.982Z"
+      }
+    ],
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
+    "event_id": "9c61695a-139c-4781-8825-f539812cc6f3",
+    "requested_at": "2026-06-05T14:37:46.982Z",
+    "metadata": {
+      "location": null
+    }
+  },
+  {
+    "type": "sms",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:41.931Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:41.931Z"
+      }
+    ],
+    "message": "Emergency fall alert (owner_timeout). Event 6047708b-0867-41f6-bc48-0b2d24c7c16e. Location unavailable.",
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
+    "event_id": "6047708b-0867-41f6-bc48-0b2d24c7c16e",
+    "requested_at": "2026-06-05T14:37:41.931Z",
+    "metadata": {
+      "location": null
+    }
+  },
+  {
+    "type": "call",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:41.928Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:41.928Z"
+      }
+    ],
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
+    "event_id": "6047708b-0867-41f6-bc48-0b2d24c7c16e",
+    "requested_at": "2026-06-05T14:37:41.928Z",
+    "metadata": {
+      "location": null
+    }
+  },
+  {
+    "type": "sms",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:36.950Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:36.950Z"
+      }
+    ],
+    "message": "Emergency fall alert (owner_timeout). Event 254ae09b-6a8c-427d-9881-d1a9c289b67f. Location unavailable.",
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
+    "event_id": "254ae09b-6a8c-427d-9881-d1a9c289b67f",
+    "requested_at": "2026-06-05T14:37:36.950Z",
+    "metadata": {
+      "location": null
+    }
+  },
+  {
+    "type": "call",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:36.948Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:36.948Z"
+      }
+    ],
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
+    "event_id": "254ae09b-6a8c-427d-9881-d1a9c289b67f",
+    "requested_at": "2026-06-05T14:37:36.948Z",
+    "metadata": {
+      "location": null
+    }
+  },
+  {
+    "type": "sms",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:31.991Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:31.991Z"
+      }
+    ],
+    "message": "Emergency fall alert (owner_timeout). Event a2f4626c-edc3-427a-a4d4-fc7b68ad79c8. Location unavailable.",
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
+    "event_id": "a2f4626c-edc3-427a-a4d4-fc7b68ad79c8",
+    "requested_at": "2026-06-05T14:37:31.991Z",
+    "metadata": {
+      "location": null
+    }
+  },
+  {
+    "type": "call",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:31.989Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:31.989Z"
+      }
+    ],
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
+    "event_id": "a2f4626c-edc3-427a-a4d4-fc7b68ad79c8",
+    "requested_at": "2026-06-05T14:37:31.989Z",
+    "metadata": {
+      "location": null
+    }
+  },
+  {
+    "type": "sms",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:26.928Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:26.928Z"
+      }
+    ],
+    "message": "Emergency fall alert (owner_timeout). Event d6d6ceef-c4b6-41a5-a60a-5f097a21798a. Location unavailable.",
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
+    "event_id": "d6d6ceef-c4b6-41a5-a60a-5f097a21798a",
+    "requested_at": "2026-06-05T14:37:26.928Z",
+    "metadata": {
+      "location": null
+    }
+  },
+  {
+    "type": "call",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:26.927Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:26.927Z"
+      }
+    ],
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
+    "event_id": "d6d6ceef-c4b6-41a5-a60a-5f097a21798a",
+    "requested_at": "2026-06-05T14:37:26.927Z",
+    "metadata": {
+      "location": null
+    }
+  },
+  {
+    "type": "sms",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:21.897Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:21.897Z"
+      }
+    ],
+    "message": "Emergency fall alert (owner_timeout). Event e57c0389-d223-4461-b81a-48b42bd9a6a9. Location unavailable.",
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
+    "event_id": "e57c0389-d223-4461-b81a-48b42bd9a6a9",
+    "requested_at": "2026-06-05T14:37:21.897Z",
+    "metadata": {
+      "location": null
+    }
+  },
+  {
+    "type": "call",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:21.896Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:21.896Z"
+      }
+    ],
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
+    "event_id": "e57c0389-d223-4461-b81a-48b42bd9a6a9",
+    "requested_at": "2026-06-05T14:37:21.896Z",
+    "metadata": {
+      "location": null
+    }
   },
   {
     "type": "push",
-    "event_id": "6047708b-0867-41f6-bc48-0b2d24c7c16e",
+    "event_id": "b126b7ae-19dc-4e63-80ac-46eccb163e09",
+    "stage": "alerted_repeat",
+    "target_roles": [
+      "relative"
+    ],
+    "result": {
+      "sent": false,
+      "reason": "No registered FCM tokens",
+      "token_count": 0
+    },
+    "requested_at": "2026-06-05T14:37:16.530Z"
+  },
+  {
+    "type": "sms",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:01.564Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:01.564Z"
+      }
+    ],
+    "message": "Emergency fall alert (owner_timeout). Event b126b7ae-19dc-4e63-80ac-46eccb163e09. Location unavailable.",
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
+    "event_id": "b126b7ae-19dc-4e63-80ac-46eccb163e09",
+    "requested_at": "2026-06-05T14:37:01.564Z",
+    "metadata": {
+      "location": null
+    }
+  },
+  {
+    "type": "call",
+    "provider": "mock",
+    "success": true,
+    "attempted": 2,
+    "attempts": [
+      {
+        "order": 1,
+        "name": "hieu",
+        "phone": "+84587381816",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:01.558Z"
+      },
+      {
+        "order": 2,
+        "name": "tien",
+        "phone": "+84355572520",
+        "status": "mock_dispatched",
+        "requested_at": "2026-06-05T14:37:01.558Z"
+      }
+    ],
+    "reason": "owner_timeout",
+    "source": "owner_app_timeout",
+    "event_id": "b126b7ae-19dc-4e63-80ac-46eccb163e09",
+    "requested_at": "2026-06-05T14:37:01.558Z",
+    "metadata": {
+      "location": null
+    }
+  },
+  {
+    "type": "push",
+    "event_id": "dc814a08-85e2-41a1-9be9-9a8c914257e4",
     "stage": "pending_repeat",
     "target_roles": [
       "owner"
     ],
     "result": {
       "sent": false,
-      "reason": "firebase-admin is not installed",
-      "token_count": 1
+      "reason": "No registered FCM tokens",
+      "token_count": 0
     },
-    "requested_at": "2026-04-13T16:19:41.654Z"
+    "requested_at": "2026-06-05T14:36:10.561Z"
+  },
+  {
+    "type": "push",
+    "event_id": "dc814a08-85e2-41a1-9be9-9a8c914257e4",
+    "stage": "pending_repeat",
+    "target_roles": [
+      "owner"
+    ],
+    "result": {
+      "sent": false,
+      "reason": "No registered FCM tokens",
+      "token_count": 0
+    },
+    "requested_at": "2026-06-05T14:35:55.550Z"
+  },
+  {
+    "type": "push",
+    "event_id": "dc814a08-85e2-41a1-9be9-9a8c914257e4",
+    "stage": "pending_repeat",
+    "target_roles": [
+      "owner"
+    ],
+    "result": {
+      "sent": false,
+      "reason": "No registered FCM tokens",
+      "token_count": 0
+    },
+    "requested_at": "2026-06-05T14:35:40.543Z"
+  },
+  {
+    "type": "push",
+    "event_id": "dc814a08-85e2-41a1-9be9-9a8c914257e4",
+    "stage": "pending_repeat",
+    "target_roles": [
+      "owner"
+    ],
+    "result": {
+      "sent": false,
+      "reason": "No registered FCM tokens",
+      "token_count": 0
+    },
+    "requested_at": "2026-06-05T14:35:25.528Z"
+  },
+  {
+    "type": "push",
+    "event_id": "dc814a08-85e2-41a1-9be9-9a8c914257e4",
+    "stage": "pending_repeat",
+    "target_roles": [
+      "owner"
+    ],
+    "result": {
+      "sent": false,
+      "reason": "No registered FCM tokens",
+      "token_count": 0
+    },
+    "requested_at": "2026-06-05T14:35:10.526Z"
+  },
+  {
+    "type": "push",
+    "event_id": "dc814a08-85e2-41a1-9be9-9a8c914257e4",
+    "stage": "pending_repeat",
+    "target_roles": [
+      "owner"
+    ],
+    "result": {
+      "sent": false,
+      "reason": "No registered FCM tokens",
+      "token_count": 0
+    },
+    "requested_at": "2026-06-05T14:34:55.509Z"
+  },
+  {
+    "type": "push",
+    "event_id": "dc814a08-85e2-41a1-9be9-9a8c914257e4",
+    "stage": "pending_repeat",
+    "target_roles": [
+      "owner"
+    ],
+    "result": {
+      "sent": false,
+      "reason": "No registered FCM tokens",
+      "token_count": 0
+    },
+    "requested_at": "2026-06-05T14:34:40.499Z"
+  },
+  {
+    "type": "push",
+    "event_id": "dc814a08-85e2-41a1-9be9-9a8c914257e4",
+    "stage": "pending_repeat",
+    "target_roles": [
+      "owner"
+    ],
+    "result": {
+      "sent": false,
+      "reason": "No registered FCM tokens",
+      "token_count": 0
+    },
+    "requested_at": "2026-06-05T14:34:25.493Z"
+  },
+  {
+    "type": "push",
+    "event_id": "dc814a08-85e2-41a1-9be9-9a8c914257e4",
+    "stage": "pending_repeat",
+    "target_roles": [
+      "owner"
+    ],
+    "result": {
+      "sent": false,
+      "reason": "No registered FCM tokens",
+      "token_count": 0
+    },
+    "requested_at": "2026-06-05T14:34:10.488Z"
+  },
+  {
+    "type": "push",
+    "event_id": "dc814a08-85e2-41a1-9be9-9a8c914257e4",
+    "stage": "pending_repeat",
+    "target_roles": [
+      "owner"
+    ],
+    "result": {
+      "sent": false,
+      "reason": "No registered FCM tokens",
+      "token_count": 0
+    },
+    "requested_at": "2026-06-05T14:33:55.485Z"
+  },
+  {
+    "type": "push",
+    "event_id": "dc814a08-85e2-41a1-9be9-9a8c914257e4",
+    "stage": "pending_repeat",
+    "target_roles": [
+      "owner"
+    ],
+    "result": {
+      "sent": false,
+      "reason": "No registered FCM tokens",
+      "token_count": 0
+    },
+    "requested_at": "2026-06-05T14:33:40.477Z"
   }
 ]

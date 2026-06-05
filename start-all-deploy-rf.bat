@@ -2,6 +2,8 @@
 setlocal
 
 cd /d "%~dp0"
+set "SERVER_IP=10.195.218.150"
+set "PREFERRED_IP_PREFIX=10.195.218"
 
 if not exist "%~dp0python_ml\start-ml-rf.bat" (
   echo [ERROR] Missing: %~dp0python_ml\start-ml-rf.bat
